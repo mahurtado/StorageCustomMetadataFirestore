@@ -1,5 +1,6 @@
 target/
 backup/
+.vscode/
 *.json
 dependency-reduced-pom.xml
 .DS_Store

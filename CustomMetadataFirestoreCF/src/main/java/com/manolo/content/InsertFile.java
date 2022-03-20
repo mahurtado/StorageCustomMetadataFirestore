@@ -72,8 +72,10 @@ public class InsertFile implements BackgroundFunction<GcsEvent> {
     try (FirestoreRpc rpc = (FirestoreRpc) FirestoreOptions.getDefaultInstance().getRpc();){
       String docId = event.getBucket() + SEPARATOR + event.getName().replace(GCS_SEPARATOR, SEPARATOR);
       Map<String, Object> data = new HashMap<>();
-      for (Map.Entry<String, String> userMetadata : blob.getMetadata().entrySet()) {
-        data.put(userMetadata.getKey(), userMetadata.getValue());
+      if(blob.getMetadata() != null){
+        for (Map.Entry<String, String> userMetadata : blob.getMetadata().entrySet()) {
+          data.put(userMetadata.getKey(), userMetadata.getValue());
+        }
       }
       ApiFuture<WriteResult> future = db.collection(System.getenv(CONTENT_RUNTIME_VAR)).document(docId).set(data);
       logger.info("Document processed : " + event.getBucket() + SEPARATOR + event.getName() + "; update time : " + future.get().getUpdateTime());
