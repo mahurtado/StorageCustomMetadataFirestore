@@ -2,7 +2,7 @@
 
 Use Google Cloud Storage custom metadata and keep it synchronized with a Firestore database 
 
-!["Solution architecture"](img/arch_gcs_firestore.jpg?raw=true)
+![Solution architecture](img/arch_gcs_firestore.jpg?raw=true)
 
 ## Installation
 
@@ -81,7 +81,7 @@ gcloud functions deploy content-gcs-metadata-archive \
 
 ## Usage
 
-For testing, just uploada filess to the configured bucket, include new metadata, modify, etc.
+For testing, just upload files to the configured bucket, add new metadata values, modify metadata, delete files,  etc.
 Then check Firestore console and see the changes. Example for uploading a local file with custom metadata:
 
 ```bash
